@@ -44,6 +44,18 @@ public class CacheConfiguration {
             cm.createCache(com.exxeta.referenzplattform.domain.User.class.getName(), jcacheConfiguration);
             cm.createCache(com.exxeta.referenzplattform.domain.Authority.class.getName(), jcacheConfiguration);
             cm.createCache(com.exxeta.referenzplattform.domain.User.class.getName() + ".authorities", jcacheConfiguration);
+            cm.createCache(com.exxeta.referenzplattform.domain.CustomerReferences.class.getName(), jcacheConfiguration);
+            cm.createCache(com.exxeta.referenzplattform.domain.CustomerReferences.class.getName() + ".downloads", jcacheConfiguration);
+            cm.createCache(com.exxeta.referenzplattform.domain.CustomerReferences.class.getName() + ".projectroles", jcacheConfiguration);
+            cm.createCache(com.exxeta.referenzplattform.domain.CustomerReferences.class.getName() + ".servicecomponents", jcacheConfiguration);
+            cm.createCache(com.exxeta.referenzplattform.domain.ConsultingDivision.class.getName(), jcacheConfiguration);
+            cm.createCache(com.exxeta.referenzplattform.domain.Customers.class.getName(), jcacheConfiguration);
+            cm.createCache(com.exxeta.referenzplattform.domain.Industries.class.getName(), jcacheConfiguration);
+            cm.createCache(com.exxeta.referenzplattform.domain.ProjectRoles.class.getName(), jcacheConfiguration);
+            cm.createCache(com.exxeta.referenzplattform.domain.ServiceComponents.class.getName(), jcacheConfiguration);
+            cm.createCache(com.exxeta.referenzplattform.domain.Downloads.class.getName(), jcacheConfiguration);
+            cm.createCache(com.exxeta.referenzplattform.domain.DocumentTypes.class.getName(), jcacheConfiguration);
+            cm.createCache(com.exxeta.referenzplattform.domain.Languages.class.getName(), jcacheConfiguration);
             // jhipster-needle-ehcache-add-entry
         };
     }
