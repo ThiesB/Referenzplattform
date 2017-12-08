@@ -1,0 +1,107 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "download",
+            "otherEntityName": "downloads",
+            "otherEntityRelationshipName": "customerReferences"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "consultingdivision",
+            "otherEntityName": "consultingDivision",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "customer",
+            "otherEntityName": "customers",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "industry",
+            "otherEntityName": "industries",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "many-to-many",
+            "otherEntityRelationshipName": "",
+            "relationshipName": "projectrole",
+            "otherEntityName": "projectRoles",
+            "otherEntityField": "id",
+            "ownerSide": true
+        },
+        {
+            "relationshipType": "many-to-many",
+            "otherEntityRelationshipName": "",
+            "relationshipName": "servicecomponent",
+            "otherEntityName": "serviceComponents",
+            "otherEntityField": "id",
+            "ownerSide": true
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "titel",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "projectTimeSpan",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "projectVolume",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "projectTeam",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "exxetaConsultingAmount",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "referenceOwner",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "exxetaProject",
+            "fieldType": "Boolean"
+        },
+        {
+            "fieldName": "finished",
+            "fieldType": "Boolean"
+        },
+        {
+            "fieldName": "schlagworte",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "contact",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "kritischeErfolgsfaktoren",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "anmerkungen",
+            "fieldType": "String"
+        }
+    ],
+    "changelogDate": "20171208084818",
+    "entityTableName": "customer_references",
+    "dto": "mapstruct",
+    "pagination": "infinite-scroll",
+    "service": "serviceImpl",
+    "jpaMetamodelFiltering": false
+}

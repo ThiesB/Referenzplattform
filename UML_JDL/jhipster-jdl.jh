@@ -1,0 +1,80 @@
+entity CustomerReferences {
+	titel String required,
+    projectTimeSpan Integer,
+    projectVolume Integer,
+    projectTeam String,
+    exxetaConsultingAmount Integer,
+    referenceOwner String required,
+    exxetaProject Boolean,
+    finished Boolean,
+    schlagworte String,
+    contact String,
+    kritischeErfolgsfaktoren String,
+    anmerkungen String
+}
+
+entity ConsultingDivision {
+	divisionName String required
+}
+
+entity Customers {
+	customerName String required
+}
+
+entity Industries {
+	industryName String required
+}
+
+entity ProjectRoles {
+	roleName String required
+}
+
+entity ServiceComponents {
+	serviceName String required
+}
+
+entity Downloads {
+	titel String required,
+    bereich String,
+    anlageURL String required 
+}
+
+entity DocumentTypes {
+	titel String required,
+    type String required
+}
+
+entity Languages {
+	languageName String required
+}
+
+relationship ManyToOne {
+	CustomerReferences{consultingdivision} to ConsultingDivision,
+    CustomerReferences{customer} to Customers,
+    CustomerReferences{industry} to Industries,
+    Downloads{doctype} to DocumentTypes,
+    Downloads{language} to Languages,
+    ServiceComponents{consultingdivision} to ConsultingDivision
+}
+
+relationship OneToMany {
+	CustomerReferences{download} to Downloads
+}
+
+relationship ManyToMany {
+    CustomerReferences{projectrole} to ProjectRoles,
+    CustomerReferences{servicecomponent} to ServiceComponents
+}
+
+//pagination options
+paginate CustomerReferences, ConsultingDivision, Customers, Industries,
+ProjectRoles, ServiceComponents, Downloads, Languages with infinite-scroll
+
+dto * with mapstruct
+
+service all with serviceImpl
+
+
+
+
+
