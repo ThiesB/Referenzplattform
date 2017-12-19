@@ -5,6 +5,7 @@
         "menu": {
             "home": "Startseite",
             "jhipster-needle-menu-add-element": "JHipster will add additional menu entries here (do not translate!)",
+            "referenzen": "Referenzen",
             "entities": {
                 "main": "Entitäten",
                 "customerReferences": "Customer References",

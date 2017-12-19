@@ -20,8 +20,8 @@
             </li>
             <!-- jhipster-needle-add-element-to-menu - JHipster will add new menu items here -->
             <li *ngSwitchCase="true" ngbDropdown class="nav-item dropdown pointer" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
-                <a class="nav-link dropdown-toggle" ngbDropdownToggle href="javascript:void(0);" id="entity-menu">
-                    <span>
+                <a *jhiHasAnyAuthority="'ROLE_ADMIN'" class="nav-link dropdown-toggle" ngbDropdownToggle href="javascript:void(0);" id="entity-menu">
+                    <span *jhiHasAnyAuthority="'ROLE_ADMIN'">
                         <i class="fa fa-th-list" aria-hidden="true"></i>
                         <span jhiTranslate="global.menu.entities.main">
                             Entities
@@ -85,6 +85,18 @@
                     </li>
                     <!-- jhipster-needle-add-entity-to-menu - JHipster will add entities to the menu here -->
                 </ul>
+            </li>
+            <!-- Menü für Referenzen -->
+            <li *ngSwitchCase="true" class="nav-item" routerLinkActive="active" routerLink="reference" [routerLinkActiveOptions]="{exact: true}">
+                <!-- Der Link für die Referenzanzeige ist nur für User -->
+                <a class="nav-link" href="javascript:void(0);" id="referenz-menu">
+                    <span>
+                        <i class="fa fa-th-list" aria-hidden="true"></i>
+                        <span jhiTranslate="global.menu.referenzen">
+                            Referenzen
+                        </span>
+                    </span>
+                </a>
             </li>
             <li *jhiHasAnyAuthority="'ROLE_ADMIN'" ngbDropdown class="nav-item dropdown pointer" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
                 <a class="nav-link dropdown-toggle" ngbDropdownToggle href="javascript:void(0);" id="admin-menu">

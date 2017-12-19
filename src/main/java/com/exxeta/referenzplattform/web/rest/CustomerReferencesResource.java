@@ -1,7 +1,10 @@
 package com.exxeta.referenzplattform.web.rest;
 
 import com.codahale.metrics.annotation.Timed;
+import com.exxeta.referenzplattform.domain.CustomerReferences;
+import com.exxeta.referenzplattform.repository.CustomerReferencesRepository;
 import com.exxeta.referenzplattform.service.CustomerReferencesService;
+import com.exxeta.referenzplattform.specifications.CustomerReferencesSpecification;
 import com.exxeta.referenzplattform.web.rest.errors.BadRequestAlertException;
 import com.exxeta.referenzplattform.web.rest.util.HeaderUtil;
 import com.exxeta.referenzplattform.web.rest.util.PaginationUtil;
@@ -9,6 +12,7 @@ import com.exxeta.referenzplattform.service.dto.CustomerReferencesDTO;
 import io.github.jhipster.web.util.ResponseUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpHeaders;
@@ -36,8 +40,12 @@ public class CustomerReferencesResource {
 
     private final CustomerReferencesService customerReferencesService;
 
-    public CustomerReferencesResource(CustomerReferencesService customerReferencesService) {
+    @Autowired
+    private final CustomerReferencesRepository customerReferencesRepository;
+
+    public CustomerReferencesResource(CustomerReferencesService customerReferencesService, CustomerReferencesRepository customerReferencesRepository) {
         this.customerReferencesService = customerReferencesService;
+        this.customerReferencesRepository = customerReferencesRepository;
     }
 
     /**
@@ -124,4 +132,16 @@ public class CustomerReferencesResource {
         customerReferencesService.delete(id);
         return ResponseEntity.ok().headers(HeaderUtil.createEntityDeletionAlert(ENTITY_NAME, id.toString())).build();
     }
+
+    //Alle CustomerReferences by Params (CustomerReferenceSpecification)
+    @GetMapping("/customer-references/search/{search}") //s fehlt
+    @Timed
+    //public ResponseEntity<CustomerReferences> getAllCustomerReferences(@RequestParam String search, Pageable pageable) {
+    public ResponseEntity<List<CustomerReferences>> getAllCustomerReferences(@PathVariable String search, Pageable pageable) {
+        log.debug("REST request to get all CustomerReferences by Param");
+        Page<CustomerReferences> page = customerReferencesRepository.findAll(CustomerReferencesSpecification.containsTextInName(search), pageable);
+        HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/customer-reference/search");
+        return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
+    }
+
 }

@@ -1,6 +1,10 @@
 package com.exxeta.referenzplattform.repository;
 
 import com.exxeta.referenzplattform.domain.CustomerReferences;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.domain.Specification;
+import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
 import org.springframework.data.jpa.repository.*;
@@ -19,4 +23,5 @@ public interface CustomerReferencesRepository extends JpaRepository<CustomerRefe
     @Query("select customer_references from CustomerReferences customer_references left join fetch customer_references.projectroles left join fetch customer_references.servicecomponents where customer_references.id =:id")
     CustomerReferences findOneWithEagerRelationships(@Param("id") Long id);
 
+    Page<CustomerReferences> findAll(Specification<CustomerReferences> spec, Pageable pageable);
 }

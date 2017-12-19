@@ -1,5 +1,6 @@
 package com.exxeta.referenzplattform.service;
 
+import com.exxeta.referenzplattform.domain.CustomerReferences;
 import com.exxeta.referenzplattform.service.dto.CustomerReferencesDTO;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -39,4 +40,5 @@ public interface CustomerReferencesService {
      * @param id the id of the entity
      */
     void delete(Long id);
+
 }
